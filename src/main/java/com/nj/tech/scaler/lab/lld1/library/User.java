@@ -9,6 +9,9 @@ public abstract class User {
     private String name;
     private String contactInfo;
 
+    static int totalUsers;
+
+
     public String getUserId() {
         return userId;
     }
@@ -33,8 +36,9 @@ public abstract class User {
         this.userId = generateUniqueId();
     }
 
-    private String generateUniqueId() {
-        return "0";
+    private final String generateUniqueId() {
+        totalUsers = getTotalUsers() + 1;
+        return "User-"+totalUsers;
     }
 
     public User(String name, String contactInfo){
@@ -52,4 +56,9 @@ public abstract class User {
     public abstract void displayDashboard();
 
     public abstract boolean canBorrowBooks();
+
+    public static int getTotalUsers(){
+        return totalUsers;
+    }
+
 }
